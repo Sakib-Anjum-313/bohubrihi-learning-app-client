@@ -24,22 +24,21 @@ const Header = () => {
       <div className="navbar-bg ">
         <Navbar expand="lg">
           <Container fluid className="p-0">
-            <Navbar.Brand href="#" className="mb-0">
+            <Navbar.Brand href="/" className="mb-0">
               <img className="ms-4" src={logo} alt="" />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav
-                className="me-auto my-2 my-lg-0 "
-                style={{ maxHeight: "100px" }}
-              >
-                <Nav.Link className="text-light fs-6 home-bg rounded">
-                  <Link className="text-decoration-none text-white" to={"/"}>
-                    হোম
-                  </Link>
-                </Nav.Link>
+              <Nav className="me-auto " style={{ maxHeight: "100px" }}>
+                <Link
+                  className="nav-btn text-decoration-none text-white fs-6 home-bg rounded p-2"
+                  to={"/"}
+                >
+                  হোম
+                </Link>
+
                 <NavDropdown
-                  className=" ms-4 home-bg rounded"
+                  className=" ms-lg-4 home-bg rounded sm-ms-0 nav-btn"
                   autoClose="outside"
                   title={
                     <span className="course-color my-auto">কোর্সসমূহ</span>
@@ -57,7 +56,6 @@ const Header = () => {
                   <NavDropdown.Item className="ps-1">
                     <NavDropdown
                       drop={"end"}
-                      
                       title={<span className="text-dark">কোর্স ক্যাটাগরি</span>}
                     >
                       <NavDropdown.Item>
@@ -96,14 +94,10 @@ const Header = () => {
                   </>
                 ) : (
                   <>
-                    <Button className="login me-4">
-                      <Link
-                        className="text-decoration-none text-white"
-                        to={"/login"}
-                      >
-                        Login
-                      </Link>
-                    </Button>
+                    <Link to={"/login"} className=" me-4 nav-btn">
+                      <Button className="login me-4 ">Login</Button>
+                    </Link>
+                   
                   </>
                 )}
               </>
