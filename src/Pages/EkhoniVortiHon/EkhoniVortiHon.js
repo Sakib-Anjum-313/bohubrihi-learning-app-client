@@ -24,7 +24,7 @@ const EkhoniVortiHon = () => {
             </div>
           </Col>
           <Col lg="5">
-            <Card style={{ width: "30rem" }}>
+            <Card className="ekhnoni-vorti-card" style={{ width: "30rem" }}>
               <Card.Body className="navbar-bg rounded ">
                 <div className="ms-3 me-3">
                   <Card.Title className="text-white fw-bold text-start ms-2 mt-3">

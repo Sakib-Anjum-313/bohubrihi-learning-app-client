@@ -1,3 +1,10 @@
 .vorti {
   color: #1c285aee;
 }
+
+@media only screen and (max-width: 600px) {
+  .ekhnoni-vorti-card {
+    width: 23rem !important;
+    margin-top: 10px;
+  }
+}
