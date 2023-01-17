@@ -4,6 +4,7 @@ import RegAndLogin from "../../layouts/RegAndLogin";
 import AllCourses from "../../Pages/AllCourses/AllCourses";
 import Category from "../../Pages/Category/Category";
 import Course from "../../Pages/Courses/Course";
+import EkhoniVortiHon from "../../Pages/EkhoniVortiHon/EkhoniVortiHon";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login/Login";
 import Reg from "../../Pages/Login/Register/Reg";
@@ -33,7 +34,15 @@ export const routes = createBrowserRouter([
         path: "/all-courses/course/:id",
         element: <Course></Course>,
       },
+      {
+        path: "/all-courses/ekhoni-vorti-hon",
+        element: <EkhoniVortiHon></EkhoniVortiHon>,
+      },
     ],
+  },
+  {
+    path: "/ekhoni-vorti-hon",
+    element: <EkhoniVortiHon></EkhoniVortiHon>
   },
   {
     path: "/login",

@@ -23,8 +23,8 @@ const Header = () => {
     <>
       <div className="navbar-bg ">
         <Navbar expand="lg">
-          <Container fluid>
-            <Navbar.Brand href="#">
+          <Container fluid className="p-0">
+            <Navbar.Brand href="#" className="mb-0">
               <img className="ms-4" src={logo} alt="" />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -57,22 +57,29 @@ const Header = () => {
                   <NavDropdown.Item className="ps-1">
                     <NavDropdown
                       drop={"end"}
+                      
                       title={<span className="text-dark">কোর্স ক্যাটাগরি</span>}
                     >
-                      <NavDropdown.Item href="/courses">
-                        কম্পিউটার সাইন্স
+                      <NavDropdown.Item>
+                        <Link to={"/all-courses/category/02"}>
+                          কম্পিউটার সাইন্স
+                        </Link>
                       </NavDropdown.Item>
                       <NavDropdown.Item href="/courses">
-                        ডাটা সাইন্স
+                        <Link to={"/all-courses/category/03"}>ডাটা সাইন্স</Link>
                       </NavDropdown.Item>
                       <NavDropdown.Item href="/courses">
-                        ডিজিটাল মার্কেটিং
+                        <Link to={"/all-courses/category/04"}>
+                          ডিজিটাল মার্কেটিং
+                        </Link>
                       </NavDropdown.Item>
                     </NavDropdown>
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="all-courses/category/01">
-                    ক্যারিয়ার ট্র্যাক প্রোগ্রাম
+                  <NavDropdown.Item>
+                    <Link to={"/all-courses/category/01"}>
+                      ক্যারিয়ার ট্র্যাক প্রোগ্রাম
+                    </Link>
                   </NavDropdown.Item>
                 </NavDropdown>
                 <Nav.Link href="#" disabled>
