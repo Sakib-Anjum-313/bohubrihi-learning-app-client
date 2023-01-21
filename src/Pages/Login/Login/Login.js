@@ -6,7 +6,7 @@ import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 
 const Login = () => {
-  const { logInUser, gitHubLogin } = useContext(AuthContext);
+  const { logInUser, gitHubLogin, googleLogin } = useContext(AuthContext);
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
@@ -39,8 +39,19 @@ const Login = () => {
         const user = result.user;
         console.log(user);
       })
-      .catch((error) => {setError(error.message);});
- }
+      .catch((error) => { setError(error.message); });
+  };
+
+  const handleGoogleHubLogin = () => {
+    googleLogin()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
 
 
   return (
@@ -79,7 +90,11 @@ const Login = () => {
           </Form.Group>
           <Form.Group className="mt-2">
             <div className="d-grid gap-2">
-              <Button variant="primary" size="md">
+              <Button
+                onClick={handleGoogleHubLogin}
+                variant="primary"
+                size="md"
+              >
                 Google Login
               </Button>
               <Button onClick={handleGitHubLogin} variant="secondary" size="md">
