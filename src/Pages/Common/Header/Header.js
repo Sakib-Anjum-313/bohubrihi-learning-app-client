@@ -1,9 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import { Image } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { BsSunFill } from "react-icons/bs";
+import { FaUser } from "react-icons/fa";
+import { MdOutlineNightlightRound } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import "./Header.css";
@@ -11,6 +15,8 @@ import logo from "./logo/Bohubrihi-Online-Courses-2.png";
 
 const Header = () => {
   const { user, logOutUser } = useContext(AuthContext);
+  const [displayUserName, setDisplayUserName] = useState(false);
+  const [nightMode, setNightMode] = useState(false);
 
   const handleLogOut = () => {
     logOutUser()
@@ -19,6 +25,18 @@ const Header = () => {
         console.error(error);
       });
   };
+
+  const handleMouseOver = () => {
+    setDisplayUserName(true);
+  };
+
+  const handleMouseOut = () => {
+    setDisplayUserName(false);
+  };
+
+  const handleNightMode = () => {
+    setNightMode(!nightMode);
+  }
   return (
     <>
       <div className="navbar-bg ">
@@ -29,7 +47,7 @@ const Header = () => {
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav className="me-auto " style={{ maxHeight: "100px" }}>
+              <Nav className="me-auto " style={{ maxHeight: "600px" }}>
                 <Link
                   className="nav-btn text-decoration-none text-white fs-6 home-bg rounded p-2"
                   to={"/"}
@@ -80,24 +98,65 @@ const Header = () => {
                     </Link>
                   </NavDropdown.Item>
                 </NavDropdown>
-                <Nav.Link href="#" disabled>
-                  Link
+
+                <Nav.Link
+                  className="text-white rounded home-bg p-2 ms-3 nav-btn "
+                  href="#"
+                >
+                  FAQ
                 </Nav.Link>
+                <Nav.Link
+                  className="text-white rounded home-bg p-2 ms-3 nav-btn"
+                  href="#"
+                >
+                  Blog
+                </Nav.Link>
+                <div
+                  onClick={handleNightMode}
+                  className="d-flex justify-content-center align-items-center text-white fs-4 ms-3 home-bg rounded p-2 ms-3  mb-3 mb-lg-0"
+                >
+                  {nightMode ? (
+                    <MdOutlineNightlightRound></MdOutlineNightlightRound>
+                  ) : (
+                    <BsSunFill></BsSunFill>
+                  )}
+                </div>
               </Nav>
               <>
-                {user?.email ? (
+                {user?.uid ? (
                   <>
-                    <span>{user.email}</span>
-                    <Button onClick={handleLogOut} className="login me-4">
+                    {user?.photoURL ? (
+                      <>
+                        {displayUserName && (
+                          <span className="text-white fw-semibold">
+                            {user?.displayName}
+                          </span>
+                        )}
+                        <Image
+                          onMouseOver={handleMouseOver}
+                          onMouseOut={handleMouseOut}
+                          className="ms-2 "
+                          style={{ height: "30px" }}
+                          roundedCircle
+                          src={user?.photoURL}
+                        ></Image>
+                      </>
+                    ) : (
+                      <>
+                        <span>{user?.displayName}</span>
+                        <FaUser className="text-white fs-4 me-1"></FaUser>
+                      </>
+                    )}
+
+                    <Button onClick={handleLogOut} className="login me-4 ms-2">
                       LogOut
                     </Button>
                   </>
                 ) : (
                   <>
                     <Link to={"/login"} className=" me-4 nav-btn">
-                      <Button className="login me-4 ">Login</Button>
+                      <Button className="login me-4 border-0">Login</Button>
                     </Link>
-                   
                   </>
                 )}
               </>

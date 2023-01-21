@@ -5,7 +5,7 @@ import CourseCard from '../Category/CourseCard';
 
 const AllCourses = () => {
     const courses = useLoaderData();
-    console.log(courses);
+    // console.log(courses);
     return (
       <div>
         <Row xs={1} md={3} className="g-4">

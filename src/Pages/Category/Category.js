@@ -6,8 +6,8 @@ import CourseCard from "./CourseCard";
 
 const Category = () => {
   const categoryCourses = useLoaderData();
-  console.log(categoryCourses);
   const { selectCourse, setSetectCourse } = useContext(CourseDetailContext);
+  console.log(categoryCourses);
 
   return (
     <div className="bg-white p-4">

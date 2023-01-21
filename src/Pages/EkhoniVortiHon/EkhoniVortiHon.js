@@ -1,26 +1,57 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { FaAccessibleIcon, FaClock, FaUser, FaVideo } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { useReactToPrint } from "react-to-print";
 import { CourseDetailContext } from "../../contexts/CourseDetailsProvider/CourseDetailsProvider";
 import Header from "../Common/Header/Header";
 import "./EkhonoVorti.css";
+
 const EkhoniVortiHon = () => {
   const { selectCourse } = useContext(CourseDetailContext);
-  const { image_url, title, details, author } = selectCourse;
-  console.log(selectCourse);
+  const { image_url, title, details, author, category_id, _id } = selectCourse;
+  const navigate = useNavigate();
+
+  // console.log(selectCourse);
+
+  const handlecheckout = () => {
+    navigate(`/all-courses/category/${category_id}/${_id}/checkout`);
+  };
+
+  const componentRef = useRef();
+
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    documentTitle: "Course Details",
+    onAfterPrint: () => alert("Print in landscape"),
+  });
+
   return (
     <div>
       <Header></Header>
-      <Container className="mt-4">
+      <Container
+        className="mt-4"
+        ref={componentRef}
+        style={{ width: "100%", height: window.innerHeight }}
+      >
         <Row xs={1} md={2} className="justify-content-md-center">
           <Col lg="7">
             <div>
-              <h2 className="mb-1">{title}</h2>
-              <h5 className="mb-3">
-                Instructor: <span className="vorti">{author?.name}</span>
-              </h5>
-              <img className="img-fluid" src={image_url} alt="" />
+              <div className="d-flex justify-content-between align-items-center ">
+                <div>
+                  <h2 className="mb-1">{title}</h2>
+                  <h5 className="mb-3">
+                    Instructor: <span className="vorti">{author?.name}</span>
+                  </h5>
+                </div>
+                <div>
+                  <button onClick={handlePrint} className="btn btn-danger">
+                    Download Course Detail
+                  </button>
+                </div>
+              </div>
+              <img className="img-fluid rounded" src={image_url} alt="" />
             </div>
           </Col>
           <Col lg="5">
@@ -81,7 +112,10 @@ const EkhoniVortiHon = () => {
                         </div>
                       </div>
                     </button>
-                    <button className="btn btn-warning  fw-bold">
+                    <button
+                      onClick={handlecheckout}
+                      className="btn btn-warning border-0  fw-bold"
+                    >
                       <span className="vorti">এখনই ভর্তি হোন</span>
                     </button>
                   </div>

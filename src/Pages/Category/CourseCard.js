@@ -6,12 +6,14 @@ import { useNavigate } from "react-router-dom";
 import { CourseDetailContext } from "../../contexts/CourseDetailsProvider/CourseDetailsProvider";
 
 const CourseCard = ({ course }) => {
-  const { title, image_url, details } = course;
+  const { title, image_url, details, category_id, _id } = course;
   const { selectCourse, setSetectCourse } = useContext(CourseDetailContext);
+
   const navigate = useNavigate();
+
   const handleCourseDetails = () => {
     setSetectCourse(course);
-    navigate("/ekhoni-vorti-hon");
+    navigate(`/all-courses/category/${category_id}/id-${_id}/course-details`);
   
 }
   return (

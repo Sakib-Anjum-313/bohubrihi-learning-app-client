@@ -3,11 +3,12 @@ import Main from "../../layouts/Main";
 import RegAndLogin from "../../layouts/RegAndLogin";
 import AllCourses from "../../Pages/AllCourses/AllCourses";
 import Category from "../../Pages/Category/Category";
-import Course from "../../Pages/Courses/Course";
+import CheckOut from "../../Pages/CheckOut/CheckOut";
 import EkhoniVortiHon from "../../Pages/EkhoniVortiHon/EkhoniVortiHon";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login/Login";
 import Reg from "../../Pages/Login/Register/Reg";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const routes = createBrowserRouter([
   {
@@ -22,7 +23,7 @@ export const routes = createBrowserRouter([
       {
         path: "/all-courses",
         element: <AllCourses></AllCourses>,
-        loader: ()=> fetch("http://localhost:5000/all-courses"),
+        loader: () => fetch("http://localhost:5000/all-courses"),
       },
       {
         path: "/all-courses/category/:id",
@@ -30,19 +31,19 @@ export const routes = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/category/${params.id}`),
       },
-      {
-        path: "/all-courses/course/:id",
-        element: <Course></Course>,
-      },
-      {
-        path: "/all-courses/ekhoni-vorti-hon",
-        element: <EkhoniVortiHon></EkhoniVortiHon>,
-      },
     ],
   },
   {
-    path: "/ekhoni-vorti-hon",
-    element: <EkhoniVortiHon></EkhoniVortiHon>
+    path: "/all-courses/category/:category_id/:_id/course-details",
+    element: <EkhoniVortiHon></EkhoniVortiHon>,
+  },
+  {
+    path: "/all-courses/category/:category_id/:_id/checkout",
+    element: (
+      <PrivateRoute>
+        <CheckOut></CheckOut>
+      </PrivateRoute>
+    ),
   },
   {
     path: "/login",
