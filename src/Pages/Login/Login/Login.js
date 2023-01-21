@@ -4,8 +4,9 @@ import Form from "react-bootstrap/Form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
+
 const Login = () => {
-  const { logInUser, } = useContext(AuthContext);
+  const { logInUser, gitHubLogin } = useContext(AuthContext);
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
@@ -31,6 +32,17 @@ const Login = () => {
       
     });
   };
+
+  const handleGitHubLogin = () => {
+    gitHubLogin()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {setError(error.message);});
+ }
+
+
   return (
     <>
       <div className="container w-50 mt-4">
@@ -64,6 +76,16 @@ const Login = () => {
               Don't have an account?{" "}
               <Link to={"/login/register"}>Register</Link>
             </Form.Label>
+          </Form.Group>
+          <Form.Group className="mt-2">
+            <div className="d-grid gap-2">
+              <Button variant="primary" size="md">
+                Google Login
+              </Button>
+              <Button onClick={handleGitHubLogin} variant="secondary" size="md">
+                GitHub Login
+              </Button>
+            </div>
           </Form.Group>
         </Form>
       </div>
