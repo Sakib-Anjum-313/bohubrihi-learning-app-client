@@ -9,6 +9,7 @@ import EkhoniVortiHon from "../../Pages/EkhoniVortiHon/EkhoniVortiHon";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login/Login";
 import Reg from "../../Pages/Login/Register/Reg";
+import PageNotFound from "../../Pages/PageNotFound/PageNotFound";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const routes = createBrowserRouter([
@@ -63,5 +64,9 @@ export const routes = createBrowserRouter([
         element: <Reg></Reg>,
       },
     ],
+  },
+  {
+    path: "*",
+    element:<PageNotFound></PageNotFound>,
   },
 ]);
