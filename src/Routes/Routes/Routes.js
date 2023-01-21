@@ -29,13 +29,16 @@ export const routes = createBrowserRouter([
       {
         path: "/all-courses",
         element: <AllCourses></AllCourses>,
-        loader: () => fetch("http://localhost:5000/all-courses"),
+        loader: () =>
+          fetch("https://bohubrihi-learning-app-server.vercel.app/all-courses"),
       },
       {
         path: "/all-courses/category/:id",
         element: <Category></Category>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/category/${params.id}`),
+          fetch(
+            `https://bohubrihi-learning-app-server.vercel.app/category/${params.id}`
+          ),
       },
     ],
   },
@@ -67,6 +70,6 @@ export const routes = createBrowserRouter([
   },
   {
     path: "*",
-    element:<PageNotFound></PageNotFound>,
+    element: <PageNotFound></PageNotFound>,
   },
 ]);
