@@ -105,12 +105,12 @@ const Header = () => {
                 >
                   FAQ
                 </Nav.Link>
-                <Nav.Link
-                  className="text-white rounded home-bg p-2 ms-3 nav-btn"
-                  href="#"
+                <Link
+                  className="text-decoration-none text-white rounded home-bg p-2 ms-3 nav-btn"
+                  to={"/blog"}
                 >
-                  Blog
-                </Nav.Link>
+                  Blogs
+                </Link>
                 <div
                   onClick={handleNightMode}
                   className="d-flex justify-content-center align-items-center text-white fs-4 ms-3 home-bg rounded p-2 ms-3  mb-3 mb-lg-0"

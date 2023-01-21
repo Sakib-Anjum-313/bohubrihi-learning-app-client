@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../../layouts/Main";
 import RegAndLogin from "../../layouts/RegAndLogin";
 import AllCourses from "../../Pages/AllCourses/AllCourses";
+import Blog from "../../Pages/Blog/Blog";
 import Category from "../../Pages/Category/Category";
 import CheckOut from "../../Pages/CheckOut/CheckOut";
 import EkhoniVortiHon from "../../Pages/EkhoniVortiHon/EkhoniVortiHon";
@@ -14,6 +15,10 @@ export const routes = createBrowserRouter([
   {
     path: "/",
     element: <Home></Home>,
+  },
+  {
+    path: "/blog",
+    element: <Blog></Blog>,
   },
 
   {
